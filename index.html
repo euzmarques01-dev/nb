@@ -123,24 +123,11 @@ h4.cargoTitle{margin:10px 0 4px 0;font-size:14px;color:#333;font-weight:700;font
   <option value="deputado">Deputado</option>
 </select>
 
-<!-- Botão que faltava -->
-<button
-  id="btnApagar"
-  style="background:#dc3545;color:white;padding:10px;border:none;border-radius:6px;cursor:pointer">
-  Apagar Todos Candidatos do Cargo
-</button>
-
 <script type="module">
 import { getDatabase, ref, get, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const db = getDatabase();
 const estados = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO","EXTERIOR"];
-
-const btnApagar = document.getElementById("btnApagar");
-
-btnApagar.addEventListener("click", async () => {
-  const cargo = document.getElementById("admCargoApagar").value;
-  if (!confirm(`Deseja apagar TODOS os candidatos do cargo "${cargo}"?`)) return;
 
   for (const uf of estados) {
     const candidatosRef = ref(db, `estados/${uf}/candidatos`);
@@ -519,7 +506,6 @@ window.abrir = function(uf) {
                 ${formatNumber(c.votos)} votos – ${perc}%
               </div>
             </div>
-          `;
         });
     });
   });
